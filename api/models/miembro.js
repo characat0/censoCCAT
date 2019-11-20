@@ -5,7 +5,7 @@ class Miembro extends Model {}
 
 Miembro.init({
     fechaAfiliacion: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         defaultValue: DataTypes.NOW
     },
@@ -30,7 +30,6 @@ Miembro.init({
     },
     codigoUniversitario: {
         type: DataTypes.STRING(9),
-        unique: true,
         allowNull: false
     },
     numeroCelular: {
@@ -57,6 +56,11 @@ Miembro.init({
     },
     foto: {
         type: DataTypes.BLOB,
+        allowNull: true,
+        defaultValue: null
+    },
+    areaPertenencia: {
+        type: DataTypes.STRING,
         allowNull: true,
         defaultValue: null
     }
