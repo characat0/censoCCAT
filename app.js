@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes');
 
-const apiRouter = require('./api');
+const apiRouter = require('./routes/api');
 
 const app = express();
 

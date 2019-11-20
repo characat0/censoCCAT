@@ -1,5 +1,5 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const sequelize = require('../../config/database');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../../../config/database');
 
 class Miembro extends Model {}
 
@@ -66,6 +66,7 @@ Miembro.init({
     }
 },{
     sequelize,
+    freezeTableName: true,
     modelName: 'miembro',
     timestamps: false,
     comment: 'La tabla miembro contiene el parque de datos de un miembro.'
