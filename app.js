@@ -1,3 +1,4 @@
+require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
