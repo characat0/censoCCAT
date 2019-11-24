@@ -85,4 +85,9 @@ function onListening() {
       : 'port ' + addr.port;
   debug('Listening on ' + bind);
   console.log(addr);
+  require('request-promise').get({
+    url: `http://:${addr.port}/api/`
+  })
+      .then(data => console.log(data))
+      .catch(e => console.log(e))
 }
