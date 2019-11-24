@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const miembro = require('./models/miembro');
-const submission = require('./models/submission');
+const miembro = require('../../models/miembro');
+const submission = require('../../models/submission');
 
 router.post('/', (req, res) => {
     const direccionIp = req.ip;

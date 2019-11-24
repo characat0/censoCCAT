@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../../../config/database');
+const sequelize = require('../config/database');
 
 class Miembro extends Model {}
 
@@ -59,8 +59,8 @@ Miembro.init({
         allowNull: true,
         defaultValue: null
     },
-    areaPertenencia: {
-        type: DataTypes.STRING,
+    areasPertenencia: {
+        type: DataTypes.JSON,
         allowNull: true,
         defaultValue: null
     }

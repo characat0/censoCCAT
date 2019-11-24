@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../../../config/database');
-const Miembro = require('../models/miembro');
+const sequelize = require('../config/database');
+const Miembro = require('./miembro');
 class Submission extends Model {}
 
 Submission.init({
