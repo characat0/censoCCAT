@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../../../config/database');
+const sequelize = require('../config/database');
 
 class Miembro extends Model {}
 
@@ -32,6 +32,14 @@ Miembro.init({
         type: DataTypes.STRING(9),
         allowNull: false
     },
+    matriculado: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
+    cicloIngreso: {
+        type: DataTypes.STRING(4),
+        allowNull: false
+    },
     numeroCelular: {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: true,
@@ -59,8 +67,8 @@ Miembro.init({
         allowNull: true,
         defaultValue: null
     },
-    areaPertenencia: {
-        type: DataTypes.STRING,
+    areasPertenencia: {
+        type: DataTypes.JSON,
         allowNull: true,
         defaultValue: null
     }
