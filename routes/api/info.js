@@ -91,15 +91,16 @@ router.get('/', (req, res) => {
                 default:
                     throw new Error('Codigo invalido! ' + codigo);
             }
-            return rp.get({
+            return rp.head({
                 uri: Final['imageUrl'],
                 followAllRedirects: false,
                 rejectUnauthorized: false,
                 headers: { 'User-Agent': USER_AGENT },
                 resolveWithFullResponse: true
             })
-                .then(response => {
-                    Final['imagenValida'] = response.headers['content-type'] === 'image/jpeg';
+                .then(headers => {
+                    console.log(headers);
+                    Final['imagenValida'] = headers['content-type'] === 'image/jpeg';
                 })
                 .catch(() => {
                     Final['imagenValida'] = false;
