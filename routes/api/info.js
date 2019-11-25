@@ -96,7 +96,7 @@ router.get('/', (req, res) => {
                 followAllRedirects: false,
                 rejectUnauthorized: false,
                 headers: { 'User-Agent': USER_AGENT },
-                resolveWithFullResponse: true
+                resolveWithFullResponse: false
             })
                 .then(headers => {
                     console.log(headers);
