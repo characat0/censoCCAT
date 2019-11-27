@@ -50,6 +50,7 @@ router.get('/', (req, res) => {
     const dataRequest = {
         uri: ENDPOINT,
         method: 'POST',
+        timeout: 5000,
         rejectUnauthorized: false,
         transform: (body) => cheerio.load(body),
         qs: { id: codigo, op: 'detalu' },
