@@ -14,13 +14,40 @@ const mapper = {
     "Medida Disciplinaria": 'estado'
 };
 const especialidades = {
+    "ARQUITECTURA": 'a1',
+    "INGENIERÍA CIVIL": 'c1',
+    "INGENIERÍA ECONÓMICA": 'e1',
+    "INGENIERÍA ESTADÍSTICA": 'e3',
+    "INGENIERÍA GEOLÓGICA": 'g1',
+    "INGENIERÍA METALÚRGICA": 'g2',
+    "INGENIERÍA DE MINAS": 'g3',
+    "INGENIERÍA INDUSTRIAL": 'i1',
     "INGENIERÍA DE SISTEMAS": 'i2',
-    "INGENIERÍA INDUSTRIAL": 'i1'
+    "INGENIERÍA ELÉCTRICA": 'l1',
+    "INGENIERÍA ELECTRÓNICA": 'l2',
+    "INGENIERÍA DE TELECOMUNICACIONES": 'l3',
+    "INGENIERÍA MECÁNICA": 'm3',
+    "INGENIERÍA MECÁNICA Y ELÉCTRICA": 'm4',
+    "INGENIERÍA NAVAL": 'm5',
+    "INGENIERÍA MECATRÓNICA": 'm6',
+    "FÍSICA": 'n1',
+    "MATEMÁTICA": 'n2',
+    "QUÍMICA": 'n3',
+    "INGENIERÍA FÍSICA": 'n5',
+    "CIENCIA DE LA COMPUTACIÓN": 'n6',
+    "INGENIERÍA PETROQUÍMICA": 'p2',
+    "INGENIERÍA DE PETRÓLEO Y GAS NATURAL": 'p3',
+    "INGENIERÍA QUÍMICA": 'q1',
+    "INGENIERÍA TEXTIL": 'q2',
+    "INGENIERÍA SANITARIA": 's1',
+    "INGENIERÍA DE HIGIENE Y SEGURIDAD INDUSTRIAL": 's2',
+    "INGENIERÍA AMBIENTAL": 's3'
 };
 
 router.get('/', (req, res) => {
     const { codigo } = req.query;
-    const params = {
+    const imageUrl = IMAGE_ENDPOINT + codigo + '.jpg';
+    const dataRequest = {
         uri: ENDPOINT,
         method: 'POST',
         rejectUnauthorized: false,
@@ -28,7 +55,15 @@ router.get('/', (req, res) => {
         qs: { id: codigo, op: 'detalu' },
         headers: { 'User-Agent': USER_AGENT }
     };
-    return rp(params)
+    const imageRequest = {
+        uri: imageUrl,
+        followAllRedirects: false,
+        rejectUnauthorized: false,
+        headers: { 'User-Agent': USER_AGENT },
+        resolveWithFullResponse: false
+    };
+
+    return rp(dataRequest)
         .then($ => {
             const tabla = $('tr');
             const usuario = {};
@@ -91,15 +126,8 @@ router.get('/', (req, res) => {
                 default:
                     throw new Error('Codigo invalido! ' + codigo);
             }
-            return rp.head({
-                uri: Final['imageUrl'],
-                followAllRedirects: false,
-                rejectUnauthorized: false,
-                headers: { 'User-Agent': USER_AGENT },
-                resolveWithFullResponse: false
-            })
+            return rp.head(imageRequest)
                 .then(headers => {
-                    console.log(headers);
                     Final['imagenValida'] = headers['content-type'] === 'image/jpeg';
                 })
                 .catch(() => {
