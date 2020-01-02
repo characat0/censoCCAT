@@ -9,6 +9,15 @@ Miembro.init({
         allowNull: false,
         defaultValue: DataTypes.NOW
     },
+    cicloEgreso: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
+    },
+    trabajaActualmente: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     apellidoPaterno: {
         type: DataTypes.STRING,
         allowNull: false
@@ -18,7 +27,8 @@ Miembro.init({
         allowNull: false
     },
     nombres: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     fechaNacimiento: {
         type: DataTypes.DATEONLY,
@@ -32,16 +42,12 @@ Miembro.init({
         type: DataTypes.STRING(9),
         allowNull: false
     },
-    matriculado: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
     cicloIngreso: {
         type: DataTypes.STRING(4),
         allowNull: false
     },
     numeroCelular: {
-        type: DataTypes.BIGINT.UNSIGNED,
+        type: DataTypes.STRING,
         allowNull: true,
         defaultValue: null
     },
@@ -58,10 +64,6 @@ Miembro.init({
         type: DataTypes.STRING(2),
         allowNull: false
     },
-    estado: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     foto: {
         type: DataTypes.BLOB,
         allowNull: true,
@@ -71,12 +73,27 @@ Miembro.init({
         type: DataTypes.JSON,
         allowNull: true,
         defaultValue: null
+    },
+    lugarNacimiento: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
+    },
+    nacionalidadAdicional: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: null
+    },
+    lugarResidencia: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
     }
 },{
     sequelize,
-    freezeTableName: true,
-    modelName: 'miembro',
+    tableName: 'miembro',
     timestamps: false,
+    underscored: true,
     comment: 'La tabla miembro contiene el parque de datos de un miembro.'
 });
 Miembro.sync();
