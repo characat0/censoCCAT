@@ -136,7 +136,10 @@ router.get('/', (req, res) => {
                 })
                 .finally(() => res.send(Final));
         })
-        .catch(e => res.status(500).send(e));
+        .catch(e => {
+            res.status(500).send(e);
+            console.error(e);
+        });
 });
 
 module.exports = router;
