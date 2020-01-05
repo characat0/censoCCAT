@@ -5,8 +5,8 @@ const submission = require('../../models/submission');
 
 router.post('/', (req, res) => {
     const direccionIp = req.ip;
-    req.body['fechaAfiliacion'] = req.body['fechaAfiliacion'] ? new Date(req.body['fechaAfiliacion']) : null;
-    req.body['fechaNacimiento'] = req.body['fechaNacimiento'] ? new Date(req.body['fechaNacimiento']) : null;
+    req.body['fechaAfiliacion'] = new Date(req.body['fechaAfiliacion']);
+    req.body['fechaNacimiento'] = new Date(req.body['fechaNacimiento']);
     return miembro.create(req.body)
         .then(entrada => {
             const idEntradaMiembro = entrada.get('id');

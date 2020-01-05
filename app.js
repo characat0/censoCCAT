@@ -12,7 +12,7 @@ const apiRouter = require('./routes/api');
 const app = express();
 app.use(cors());
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false, limit: '500kb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '4096kb' }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
