@@ -13,7 +13,10 @@ router.post('/', (req, res) => {
             return submission.create({ direccionIp, idEntradaMiembro });
         })
         .then(() => res.sendStatus(200))
-        .catch(e => res.status(500).send(e));
+        .catch(e => {
+          res.status(500).send(e);
+          console.error(e);
+        });
 });
 
 router.all('/', (req, res) => {
