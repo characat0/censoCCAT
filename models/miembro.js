@@ -35,7 +35,7 @@ Miembro.init({
         allowNull: false
     },
     documentoIdentidad: {
-        type: DataTypes.BIGINT.UNSIGNED,
+        type: DataTypes.STRING,
         allowNull: false
     },
     codigoUniversitario: {
@@ -91,7 +91,7 @@ Miembro.init({
     }
 },{
     sequelize,
-    tableName: 'miembro',
+    tableName: 'registro',
     timestamps: false,
     underscored: true,
     comment: 'La tabla miembro contiene el parque de datos de un miembro.'
